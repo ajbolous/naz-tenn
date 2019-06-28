@@ -1,4 +1,4 @@
-<mat-toolbar class="mat-elevation-z6" color="white" >
+<mat-toolbar class="mat-elevation-z0" color="white" style="background-color: white;">
   <mat-toolbar-row>
     <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
       <mat-icon>menu</mat-icon>
@@ -6,7 +6,7 @@
     <mat-menu #menu="matMenu">
       <button mat-menu-item routerLink="/about">
         <mat-icon>home</mat-icon>
-        About
+        Home
       </button>
       <button mat-menu-item routerLink="/players">
         <mat-icon>person</mat-icon>
@@ -17,9 +17,11 @@
         Scores
       </button>
     </mat-menu>
-
+    <p style="font-size:1em;color:#aaa;margin-left: 5px;">Nazareth Tennis School</p>
+    <p style="color:#ccc; font-size:0.6em; margin-left:8px; margin-top:1px;"> Since 1972</p>
     <span class="example-spacer"></span>
-    <mat-icon class="example-icon" aria-hidden="false" aria-label="Example heart icon" style="color:deeppink;">favorite
+
+    <mat-icon class="example-icon" aria-hidden="false" aria-label="Example heart icon" style="color:red;">favorite
     </mat-icon>
   </mat-toolbar-row>
 </mat-toolbar>
