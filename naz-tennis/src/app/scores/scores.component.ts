@@ -13,22 +13,27 @@ export class ScoresComponent implements OnInit {
     { id: 3, day: new Date(3, 7, 2019) },
     { id: 4, day: new Date(4, 7, 2019) },
     { id: 5, day: new Date(5, 7, 2019) }
-  ]
+  ];
+  selectedDay;
 
   scores = [
+
     {
       winner: 'Bolous', loser: 'Tarek', sets: [[6, 4], [6, 3]]
     },
     {
-      winner: 'Tarek', loser: 'Tarek', sets: [[6, 4], [2, 6], [6,4]]
+      winner: 'Tarek', loser: 'Tarek', sets: [[6, 4], [2, 6], [6, 4]]
     },
     {
-      winner: 'Tarek', loser: 'Ward', sets: [[6, 2], [2, 6], [6,1]]
+      winner: 'Tarek', loser: 'Ward', sets: [[6, 2], [2, 6], [6, 1]]
     }
+
   ];
+
   constructor() { }
 
   ngOnInit() {
+    this.selectedDay = this.playDates[2];
   }
 
 }

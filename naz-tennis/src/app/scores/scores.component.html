@@ -1,7 +1,7 @@
-<mat-form-field style="width: 92%; left:4%;">
+<mat-form-field style="width: 92%; left:4%; margin-top:10px;">
   <mat-label>Tournement day</mat-label>
-  <mat-select>
-    <mat-option *ngFor="let playDate of playDates" [value]="playDate.id">
+  <mat-select [(value)]="selectedDay">
+    <mat-option *ngFor="let playDate of playDates" [value]="playDate" >
       Day {{playDate.id}} - ({{playDate.day.toDateString()}})
     </mat-option>
   </mat-select>
