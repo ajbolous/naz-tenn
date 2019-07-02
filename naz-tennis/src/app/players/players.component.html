@@ -1,52 +1,19 @@
 <div>
-
   <mat-tab-group>
     <mat-tab label="Men">
       <mat-grid-list cols="1" rowHeight="180px">
-        <mat-grid-tile *ngFor="let player of men" style="width: 100%">
-          <mat-card  style="width: 100%">
-            <mat-card-header>
-              <mat-icon mat-card-avatar color="primary">person</mat-icon>
-              <mat-card-title>{{player.name}}</mat-card-title>
-              <mat-card-subtitle>{{player.league}}</mat-card-subtitle>
-            </mat-card-header>
-            <mat-card-content>
-              <p>
-                {{player.description}}
-              </p>
-            </mat-card-content>
-            <mat-card-actions>
-              <button mat-button color="primary">SCORES</button>
-              <button mat-button color="accent">LIKE</button>
-            </mat-card-actions>
-          </mat-card>
+        <mat-grid-tile *ngFor="let player of playersService.GetMalePlayers()" style="width: 100%">
+          <app-player [player]=player></app-player>
         </mat-grid-tile>
       </mat-grid-list>
     </mat-tab>
 
     <mat-tab label="Women">
       <mat-grid-list cols="1" rowHeight="180px">
-        <mat-grid-tile *ngFor="let player of women"  style="width: 100%">
-          <mat-card  style="width: 100%">
-            <mat-card-header>
-              <mat-icon mat-card-avatar color="accent">person</mat-icon>
-              <mat-card-title>{{player.name}}</mat-card-title>
-              <mat-card-subtitle>{{player.league}}</mat-card-subtitle>
-            </mat-card-header>
-            <mat-card-content>
-              <p>
-                {{player.description}}
-              </p>
-            </mat-card-content>
-            <mat-card-actions>
-              <button mat-button color="primary">SCORES</button>
-              <button mat-button color="accent">LIKE</button>
-            </mat-card-actions>
-          </mat-card>
+        <mat-grid-tile *ngFor="let player of playersService.GetFemalePlayers()" style="width: 100%">
+          <app-player [player]=player></app-player>
         </mat-grid-tile>
       </mat-grid-list>
     </mat-tab>
-
   </mat-tab-group>
-
 </div>

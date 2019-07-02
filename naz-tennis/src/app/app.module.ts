@@ -38,13 +38,22 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 
 // Slideshow module.
-import {SlideshowModule} from 'ng-simple-slideshow';
+import { SlideshowModule } from 'ng-simple-slideshow';
 
 import { AboutComponent } from './about/about.component';
 import { PlayersComponent } from './players/players.component';
 import { ScoresComponent } from './scores/scores.component';
 import { EventsComponent } from './events/events.component';
+import { PlayerComponent } from './player/player.component';
+import { PlayersService } from './players.service';
+import { ScheduleComponent } from './schedule/schedule.component';
+import { GroupsComponent } from './groups/groups.component';
+import { GroupBoardComponent } from './group-board/group-board.component';
 
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -52,12 +61,19 @@ import { EventsComponent } from './events/events.component';
     AboutComponent,
     PlayersComponent,
     ScoresComponent,
-    EventsComponent
+    EventsComponent,
+    PlayerComponent,
+    ScheduleComponent,
+    GroupsComponent,
+    GroupBoardComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    AngularFireAuthModule,
     MatCheckboxModule,
     MatCheckboxModule,
     MatButtonModule,
@@ -91,7 +107,7 @@ import { EventsComponent } from './events/events.component';
     MatPaginatorModule,
     SlideshowModule
   ],
-  providers: [],
+  providers: [PlayersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

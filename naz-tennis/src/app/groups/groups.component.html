@@ -1,0 +1,17 @@
+<div style="width:100%;">
+  <mat-tab-group>
+    <mat-tab label="Men">
+      <div *ngFor="let ranking of rankings">
+        <app-group-board [groupRanking]="ranking"></app-group-board>
+        <br>
+      </div>
+    </mat-tab>
+
+    <mat-tab label="Women">
+      <div *ngFor="let ranking of rankings">
+        <app-group-board [groupRanking]="ranking"></app-group-board>
+        <br>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>
