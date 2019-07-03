@@ -1,0 +1,50 @@
+<div style="width:98%;margin-left:1%;">
+  <mat-tab-group>
+    <mat-tab label="Schedule">
+      <div class="form-container">
+        <mat-form-field>
+          <input matInput placeholder="Event title" [(ngModel)]=newEvent.title>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker" placeholder="Event date" [(ngModel)]=newEvent.date>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-checkbox [(ngModel)]="newEvent.allDay">All day event</mat-checkbox>
+        <br>
+
+        <mat-form-field *ngIf="newEvent.allDay == false">
+          <mat-select placeholder="Start hour" [(ngModel)]=newEvent.startHour>
+            <mat-option *ngFor="let hour of [8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]" [value]="hour">
+              {{hour}}:00
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field *ngIf="newEvent.allDay == false">
+          <mat-select placeholder="End hour" [(ngModel)]=newEvent.endHour>
+            <mat-option *ngFor="let hour of [8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]" [value]="hour">
+              {{hour}}:00
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-select placeholder="Event type" value=event.type>
+            <mat-option value="holiday">Holiday</mat-option>
+            <mat-option value="rain">Rain</mat-option>
+            <mat-option value="match">Match</mat-option>
+            <mat-option value="event">Event</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <button mat-raised-button (click)="AddEvent()" color=primary>Add Event</button>
+      </div>
+    </mat-tab>
+
+    <mat-tab label="Score">
+    </mat-tab>
+  </mat-tab-group>
+</div>

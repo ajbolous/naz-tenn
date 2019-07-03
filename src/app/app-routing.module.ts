@@ -7,6 +7,7 @@ import { EventsComponent } from './events/events.component';
 import { ScheduleComponent } from './schedule/schedule.component';
 import { GroupsComponent } from './groups/groups.component';
 import { WatchComponent } from './watch/watch.component';
+import { AdminComponent } from './admin/admin.component';
 
 const routes: Routes = [
   { path: 'events', component: EventsComponent },
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'groups', component: GroupsComponent },
   { path: 'schedule', component: ScheduleComponent },
   { path: 'watch', component: WatchComponent },
+  { path: 'admin', component: AdminComponent },
   { path: '**', component: AboutComponent }];
 
 @NgModule({

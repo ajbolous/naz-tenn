@@ -1,4 +1,4 @@
-<mwl-calendar-week-view
-[(viewDate)]="viewDate" [events]="events" [precision]="hours"   [dayStartHour]="14"
-[dayEndHour]="22"
-  (dayClicked)="dayClicked($event.day)"></mwl-calendar-week-view>
+<mwl-calendar-week-view *ngIf="!isLoading" [(viewDate)]="viewDate" [events]="events" [dayStartHour]="8"
+  [dayEndHour]="22" (dayClicked)="dayClicked($event.day)"></mwl-calendar-week-view>
+
+<mat-progress-bar mode="indeterminate" style="margin-top:5px;"*ngIf="isLoading" ></mat-progress-bar>

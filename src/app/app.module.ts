@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
+import { FormsModule } from '@angular/forms'
 
 // Angular Material Components
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -34,7 +35,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
-
+import { MatNativeDateModule } from '@angular/material';
 // Slideshow module.
 import { SlideshowModule } from 'ng-simple-slideshow';
 
@@ -53,12 +54,15 @@ import { WatchComponent } from './watch/watch.component';
 // Firebase imports
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 
 // Calendar imports
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -71,21 +75,24 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
     ScheduleComponent,
     GroupsComponent,
     GroupBoardComponent,
-    WatchComponent
+    WatchComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    FormsModule,
     AppRoutingModule,
+    AngularFireDatabaseModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
-    MatCheckboxModule,
     MatCheckboxModule,
     MatButtonModule,
     MatInputModule,
     MatAutocompleteModule,
     MatDatepickerModule,
+    MatNativeDateModule,
     MatFormFieldModule,
     MatRadioModule,
     MatSelectModule,

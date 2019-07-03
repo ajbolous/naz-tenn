@@ -8,4 +8,14 @@ html, body
 {
     height: 100% !important; 
     margin: 0 !important;
+    font-family: 'Roboto' !important;
+}
+b 
+{
+    font-weight: normal;
+}
+
+.cal-week-view .cal-time 
+{
+    font-weight: normal;
 }

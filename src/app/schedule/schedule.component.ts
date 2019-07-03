@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CalendarMonthViewDay, CalendarEvent } from 'angular-calendar';
+import { CalendarEvent } from 'angular-calendar';
+import { AngularFireDatabase, } from '@angular/fire/database';
+import { ScheduleEvent } from 'src/model/schedule';
 
 @Component({
   selector: 'app-schedule',
@@ -8,44 +10,43 @@ import { CalendarMonthViewDay, CalendarEvent } from 'angular-calendar';
 })
 export class ScheduleComponent implements OnInit {
 
+  isLoading = false;
   viewDate: Date = new Date();
-
-  events: Array<CalendarEvent<{ incrementsBadgeTotal: boolean }>> = [
-    {
-      title: 'No tennis - Rain',
-      color: { primary: 'red', secondary: 'white' },
-      start: new Date(),
-      allDay: true
-    },
-
-    {
-      title: 'No tennis - Holiday',
-      color: { primary: 'red', secondary: 'white' },
-      start: new Date(2019, 6, 4),
-      allDay: true
-    },
-    {
-      title: 'Bolous - Stefan',
-      color: { primary: 'deepskyblue', secondary: 'white' },
-      start: new Date(2019, 6, 2, 19, 30),
-      end: new Date(2019, 6, 2, 21, 30)
-    },
-    {
-      title: 'Bolous/Hisham - Stefan/Fouad',
-
-      color: { primary: 'deepskyblue', secondary: 'white' },
-      start: new Date(2019, 6, 5, 19, 30),
-      end: new Date(2019, 6, 5, 21, 30)
-    }
-  ];
+  events: Array<CalendarEvent> = [];
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     this.viewDate = date;
   }
 
-  constructor() { }
+  constructor(public db: AngularFireDatabase) { }
 
   ngOnInit() {
+    this.isLoading = true;
+
+    this.db.list('/matches').valueChanges().subscribe((matches: ScheduleEvent[]) => {
+      const newEventsList: Array<CalendarEvent> = [];
+      matches.forEach(match => {
+        let color = 'deepskyblue';
+        if (match.type === 'rain') {
+          color = 'red';
+        } else if (match.type === 'holiday') {
+          color = 'violet';
+        } else if (match.type === 'match') {
+          color = 'orange';
+        }
+
+        newEventsList.push({
+          title: match.title,
+          start: new Date(match.startTime),
+          end: new Date(match.endTime),
+          allDay: match.allDay,
+          color: { primary: color, secondary: '#fefefe' }
+        });
+      });
+
+      this.isLoading = false;
+      this.events = newEventsList;
+    });
   }
 
 
