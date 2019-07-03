@@ -1,10 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 
-//Angular Material Components
+// Angular Material Components
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCheckboxModule } from '@angular/material';
 import { MatButtonModule } from '@angular/material';
@@ -40,6 +38,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 // Slideshow module.
 import { SlideshowModule } from 'ng-simple-slideshow';
 
+import { AppComponent } from './app.component';
 import { AboutComponent } from './about/about.component';
 import { PlayersComponent } from './players/players.component';
 import { ScoresComponent } from './scores/scores.component';
@@ -49,11 +48,17 @@ import { PlayersService } from './players.service';
 import { ScheduleComponent } from './schedule/schedule.component';
 import { GroupsComponent } from './groups/groups.component';
 import { GroupBoardComponent } from './group-board/group-board.component';
+import { WatchComponent } from './watch/watch.component';
 
+// Firebase imports
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
+
+// Calendar imports
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 @NgModule({
   declarations: [
@@ -65,7 +70,8 @@ import { environment } from '../environments/environment';
     PlayerComponent,
     ScheduleComponent,
     GroupsComponent,
-    GroupBoardComponent
+    GroupBoardComponent,
+    WatchComponent
   ],
   imports: [
     BrowserModule,
@@ -105,7 +111,8 @@ import { environment } from '../environments/environment';
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
-    SlideshowModule
+    SlideshowModule,
+    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory })
   ],
   providers: [PlayersService],
   bootstrap: [AppComponent]
