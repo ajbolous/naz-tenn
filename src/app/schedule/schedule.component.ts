@@ -11,11 +11,18 @@ import { ScheduleEvent } from 'src/model/schedule';
 export class ScheduleComponent implements OnInit {
 
   isLoading = false;
+  weekView = true;
   viewDate: Date = new Date();
   events: Array<CalendarEvent> = [];
 
-  dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
-    this.viewDate = date;
+  dayHeaderClicked(event : any) {
+    console.log(event);
+    this.viewDate = event.day.date;
+    this.weekView = false;
+  }
+
+  BackToWeekView() {
+    this.weekView = true;
   }
 
   constructor(public db: AngularFireDatabase) { }
@@ -27,12 +34,16 @@ export class ScheduleComponent implements OnInit {
       const newEventsList: Array<CalendarEvent> = [];
       matches.forEach(match => {
         let color = 'deepskyblue';
+        let secColor = 'white';
         if (match.type === 'rain') {
           color = 'red';
+          secColor = 'orangered';
         } else if (match.type === 'holiday') {
           color = 'violet';
         } else if (match.type === 'match') {
-          color = 'orange';
+          color = 'orangered';
+        } else if (match.type === 'train') {
+          color = 'blue';
         }
 
         newEventsList.push({
@@ -40,7 +51,7 @@ export class ScheduleComponent implements OnInit {
           start: new Date(match.startTime),
           end: new Date(match.endTime),
           allDay: match.allDay,
-          color: { primary: color, secondary: '#fefefe' }
+          color: { primary: color, secondary: secColor }
         });
       });
 
@@ -48,6 +59,4 @@ export class ScheduleComponent implements OnInit {
       this.events = newEventsList;
     });
   }
-
-
 }

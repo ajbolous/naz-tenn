@@ -1,4 +1,20 @@
-<mwl-calendar-week-view *ngIf="!isLoading" [(viewDate)]="viewDate" [events]="events" [dayStartHour]="8"
-  [dayEndHour]="22" (dayClicked)="dayClicked($event.day)"></mwl-calendar-week-view>
+<div *ngIf="weekView">
+  <mwl-calendar-week-view *ngIf="!isLoading" (dayHeaderClicked)="dayHeaderClicked($event)" [(viewDate)]="viewDate"
+    [events]="events" [dayStartHour]="8" [dayEndHour]="22"></mwl-calendar-week-view>
+</div>
 
-<mat-progress-bar mode="indeterminate" style="margin-top:5px;"*ngIf="isLoading" ></mat-progress-bar>
+<div *ngIf="!weekView">
+  <mat-toolbar color="white" style="background-color: white">
+    <mat-toolbar-row>
+      <button mat-icon-button style="font-size:1.25em;" (click)="weekView = true" color="primary">
+        <mat-icon>chevron_left</mat-icon>
+      </button>
+      <span style="margin-left: 10px;">{{viewDate.toDateString()}}</span>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <mwl-calendar-day-view *ngIf="!isLoading" [(viewDate)]="viewDate" [events]="events" [dayStartHour]="8"
+    [dayEndHour]="22"></mwl-calendar-day-view>
+</div>
+
+<mat-progress-bar mode="indeterminate" style="margin-top:5px;" *ngIf="isLoading"></mat-progress-bar>

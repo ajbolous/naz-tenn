@@ -32,11 +32,12 @@
         </mat-form-field>
 
         <mat-form-field>
-          <mat-select placeholder="Event type" value=event.type>
+          <mat-select placeholder="Event type" [(ngModel)]=newEvent.type>
+            <mat-option value="event">Event</mat-option>
+            <mat-option value="train">Training</mat-option>
+            <mat-option value="match">Match</mat-option>
             <mat-option value="holiday">Holiday</mat-option>
             <mat-option value="rain">Rain</mat-option>
-            <mat-option value="match">Match</mat-option>
-            <mat-option value="event">Event</mat-option>
           </mat-select>
         </mat-form-field>
 
